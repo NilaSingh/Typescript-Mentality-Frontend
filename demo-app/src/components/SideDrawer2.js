@@ -164,33 +164,6 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))}
-        {['My Account'].map((text, index) => (
-          <ListItem 
-          button key={text}
-          component={Link} to='/my-account'
-          >
-            <ListItemIcon><PersonOutlineIcon style={{color:'#375C23'}}/></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-        {['My Notes'].map((text, index) => (
-          <ListItem 
-          button key={text}
-          component={Link} to='/my-notes'
-          >
-            <ListItemIcon><EventNoteIcon style={{color:'#375C23'}}/></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-       {['Saved Doctors'].map((text, index) => (
-          <ListItem 
-          button key={text}
-          component={Link} to="/saved-doctors"
-          >
-            <ListItemIcon><PeopleOutlineIcon style={{color:'#375C23'}}/></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
        {['Find Doctors'].map((text, index) => (
           <ListItem 
           button key={text}
@@ -202,12 +175,21 @@ return(
         ))}
       <Divider />
       <List>
-      {['Log Out'].map((text, index) => (
+      {['Sign In'].map((text, index) => (
           <ListItem 
           button key={text}
           component={Link} to='/sign-in'
           >
             <ListItemIcon><ExitToAppRoundedIcon style={{color:'#375C23'}}/></ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      {['Register'].map((text, index) => (
+          <ListItem 
+          button key={text}
+          component={Link} to='/register'
+          >
+            <ListItemIcon><PostAddRoundedIcon style={{color:'#375C23'}}/></ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
