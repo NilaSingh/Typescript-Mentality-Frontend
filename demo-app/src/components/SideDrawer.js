@@ -106,9 +106,6 @@ export default function SideDrawer() {
     setOpen(false);
   };
 
-  const handleAccount = (e) => {
-    e.preventDefault()
-  }
 return(
   <div className={classes.root}>
     <CssBaseline />
