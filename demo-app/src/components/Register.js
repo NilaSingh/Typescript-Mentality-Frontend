@@ -143,7 +143,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
                   <TextField
                     margin="small"
                     size="small"
-                    label="Email"
+                    label="E-mail"
                     name="email"
                     defaultValue={user.email}
                     onChange={setUser}
@@ -153,8 +153,8 @@ export default function Register({ setLoggedIn, loggedIn }) {
                   <TextField
                     margin="small"
                     size="small"
-                    label="Business Type"
-                    name="business_type"
+                    label="Insurance"
+                    name="insurance"
                     defaultValue={user.insurance}
                     onChange={setUser}
                   />
