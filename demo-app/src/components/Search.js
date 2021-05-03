@@ -49,59 +49,66 @@ const gridStyles = makeStyles({
 });
 
 const useStyles = makeStyles((theme) => ({
-  filterbutton: {
+  searchfield: {
     "&:hover": {
-      borderColor: "#adcaec",
+      borderColor: "rgba(223,225,229,0)",
+      boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
+    },
+    "&:focus": {
+      borderColor: "rgba(223,225,229,0)",
+      boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
+    },
+    backgroundColor: "#00000000",
+    display: "flex",
+    border: " 1px solid #dfe1e5",
+    borderRadius: "24px",
+    height: "44px",
+    margin: "20px auto 20px",
+    width: "400px",
+    outline: "none",
+    textIndent: "30px",
+    textDecoration: "none",
+  },
+  filter: {
+    "&:hover": {
+      borderColor: "#375C23",
       boxShadow: "0 1px 6px #adcaec",
-      backgroundColor: "#12417b",
-      color:"white",
+      backgroundColor: "#C2F0AA",
+      color: "#375C23"
     },
     color: "#f6f8f9",
-    background: "#2c63a6",
+    background: "#375C23",
     padding: "12px 18px",
     fontSize: "14px",
     lineHeight: "16px",
     height: "auto",
     borderWidth: "0",
-    borderRadius: "30px",
+    borderRadius: "20px",
+    top: 20,
+    marginBottom: 50,
+  },
+  searchbtn: {
+    "&:hover": {
+      borderColor: "#375C23",
+      boxShadow: "0 1px 6px #adcaec",
+      backgroundColor: "#C2F0AA",
+      color: "#375C23"
+    },
+    color: "#f6f8f9",
+    background: "#375C23",
+    padding: "12px 18px",
+    fontSize: "14px",
+    lineHeight: "16px",
+    height: "auto",
+    borderWidth: "0",
+    borderRadius: "20px",
+    top: 20,
+    marginBottom: 50,
+    left:'46vw',
   },
 }));
 
-
-class ViewButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {isToggleOn: true};
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
-  }
-  render() {
-    if(this.state){
-      return (
-        <div>
-          <Button variant="primary" onClick={this.handleClick}>
-            {this.state.isToggleOn ? 'List' : 'Map'}
-          </Button>
-        </div>
-      );
-    }else{
-      return (
-        <div>
-          <button onClick={this.handleClick}>
-            {this.state.isToggleOn ? 'List' : 'Map'}
-          </button>
-        </div>
-      );
-    }
-  }
-}
-
-function SearchBusiness() {
+function Search() {
   const gridclass=gridStyles()
   const classes = useStyles();
   const [input, setInput] = useState("");
@@ -114,6 +121,21 @@ function SearchBusiness() {
     medical_issue:'',
     doctor_name:''
   });
+
+const handleSubmit = e =>{
+e.preventDefault()
+let insuranceType=JSON.stringify(user.insurance)
+insuranceType=insuranceType.replace(/['"]+/g, '')
+
+let medicalIssue=JSON.stringify(user.medical_issue)
+medicalIssue=medicalIssue.replace(/['"]+/g, '')
+
+let doctorName=JSON.stringify(user.doctor_name)
+doctorName=doctorName.replace(/['"]+/g, '')
+console.log(doctorName)
+//add filtering specs here
+}
+
 
 //   const handleChange = (event) =>{
 //     console.log(event.target.value);
@@ -225,27 +247,28 @@ function SearchBusiness() {
 
     return (
       <body>
-        <Grow in={checked} {...(checked ? { timeout: 3000 } : {})}>
         {/* Form now prints to console, now just needs to change what is displayed to the screen */}
-        <form> {/* onSubmit={nameFilter}>  */}
-          <input className={classes.searchBar}
-            type="text"
+        <form>
+          <input 
+            margin="small"
+            size="small"
+            name="doctor_name"
             id='searchField'
-            value={input}
-            name="input"
-            placeholder="Business Name Search"
-            // onChange={handleChange}
+            defaultValue={user.doctor_name}
+            placeholder="Doctor Name Search"
+            onChange={setUser}
+            className={classes.searchfield}
           />
           <Button
             type="submit"
-            className={classes.submitButton}
+            className={classes.searchbtn}
             variant="contained"
             size="small"
+            onClick={handleSubmit}
           >
             Search
           </Button>
         </form>
-      </Grow>
         <div className='page-container'>
         <div className='filter-container'>
         <div>
@@ -253,18 +276,19 @@ function SearchBusiness() {
         </div>
         <div>
           <filterby>Insurance</filterby><br/>
-          <input type="radio" value='example1' onClick={setUser} name='insurance' /> Local Markets<br/>
+          <input type="radio" value='Atena' onClick={setUser} name='insurance' /> Atena<br/>
         </div>
           <div>
             <filterby>Medical Issue</filterby><br/>
-          <input type="radio" value="example2" onClick={setUser} name="medical issue" />New York<br/>
+          <input type="radio" value="Anxiety" onClick={setUser} name="medical_issue" />Anxiety<br/>
           </div>
         {/* <div><ViewButton /></div><br/> */}
         <Button
         type='submit'
         variant='contained'
         size='small'
-        // onClick={handleSubmit}
+        onClick={handleSubmit}
+        className={classes.filter}
         >Filter</Button>
         </div>
           <list id='list' className='list-container'/>
@@ -272,4 +296,4 @@ function SearchBusiness() {
       </body>
     );
   }
-export default SearchBusiness;
+export default Search;

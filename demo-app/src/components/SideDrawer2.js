@@ -164,10 +164,10 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))}
-       {['Find Doctors'].map((text, index) => (
+       {['Search'].map((text, index) => (
           <ListItem 
           button key={text}
-          component={Link} to='/find-doctor'
+          component={Link} to='/search'
           >
             <ListItemIcon><FindInPageRoundedIcon style={{color:'#375C23'}}/></ListItemIcon>
             <ListItemText primary={text} />

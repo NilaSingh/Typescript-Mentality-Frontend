@@ -7,7 +7,7 @@ import SideDrawer2 from "./components/SideDrawer2.js"
 import AccountProfile from "./components/AccountProfile.js"
 import SavedDoctors from "./components/SavedDoctors.js"
 import Register from "./components/Register.js"
-import FindDoctor from "./components/FindDoctor.js"
+import Search from "./components/Search.js"
 import Notes from "./components/Notes.js"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 
@@ -42,8 +42,8 @@ export default function App() {
        <Route path="/saved-doctors">
          <SavedDoctors />
         </Route>
-        <Route path ="/find-doctor">
-          <FindDoctor />
+        <Route path ="/search">
+          <Search />
         </Route>
         <Route path="/my-account">
           <AccountProfile />
@@ -71,8 +71,8 @@ export default function App() {
          <Route path="/saved-doctors">
            <SavedDoctors />
           </Route>
-          <Route path ="/find-doctor">
-            <FindDoctor />
+          <Route path ="/search">
+            <Search />
           </Route>
           <Route path="/my-account">
             <AccountProfile />
