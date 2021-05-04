@@ -11,7 +11,7 @@
    Post covid, many are still struggling to get back to normal life while dealing of the after effects of the pandemic. Many are now placed in a position where their financial resposibilies are resumed without having proper income. Meanwhile, the pandemic may have left others in a state of isolation or discomfort due to their environment. Nonetheless, mental health has always been an ongoing struggle for many as each generation becomes increasingly more self aware but cannot always afford costly treatment. As these issues become more and more relevant in society there is an ongoing need for trustworthy sites that can connect people with affordable care
 
 ## Solution ##
-   ###To help alleviate the problem, this application allows people to find a doctor based on their needs. They have the ability to filter doctors according to health issue, insurance and name. They are also able to create accounts and keep notes of any concerns they may have or issues they wish to bring up to their doctor. ###
+   To help alleviate the problem, this application allows people to find a doctor based on their needs. They have the ability to filter doctors according to health issue, insurance and name. They are also able to create accounts and keep notes of any concerns they may have or issues they wish to bring up to their doctor. 
  
 ## Key Technical Challenge ##
    The key technical challenge of this application will be developing our own database of doctors and their insurance coverage.
