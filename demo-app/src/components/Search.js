@@ -266,7 +266,7 @@ console.log(doctorName)
             size="small"
             onClick={handleSubmit}
           >
-            Search
+            Search Doctor
           </Button>
         </form>
         <div className='page-container'>
