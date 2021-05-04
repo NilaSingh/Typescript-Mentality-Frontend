@@ -2,11 +2,11 @@
 
 ## Mental health helpline ##
 
-## A site to find mental health professionals for a variety of issues  ##
+## Your mental health helper  ##
 
 ## Summary ##
 
-    This website offers a way to help people facing mental health challenges or issues to find proper help. Users are able to sign up and easily search for doctors that may be able to help, whether it be with mental illnesses, substance abuse, therapy, or any other issue someone might be facing.
+   # This application offers a way to assist people that are facing mental health challenges by allowing them to find proper help without breaking their bank. Users are able to sign up and easily search for doctors that are covered by their insurance. Users are able to find doctors who specialize in an array of issues such as substance abuse, therapy, anxiety, depression and more. #
 
 ## Problem ##
 
