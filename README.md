@@ -1,8 +1,8 @@
 # Mentality #
 
-## Mental health helpline ##
+## Mental health doctor discovery ##
 
-## Your mental health helper  ##
+## Your mental health helper for bringing doctors and patients together ##
 
 ## Summary ##
    This application offers a way to assist people that are facing mental health challenges by allowing them to find proper help without breaking their bank. Users are able to sign up and easily search for doctors that are covered by their insurance. Users are able to find doctors who specialize in an array of issues such as substance abuse, therapy, anxiety, depression and more. 
