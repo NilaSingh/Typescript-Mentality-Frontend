@@ -105,7 +105,14 @@ export default function SideDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const logout = () => {
+    let isSignedIn = window.localStorage.getItem("token") in [null, ""];
+    isSignedIn=false
+    console.log(isSignedIn)
+    //add code to refresh page
+  }
 
+  
 return(
   <div className={classes.root}>
     <CssBaseline />
@@ -182,7 +189,7 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))}
-       {['Saved'].map((text, index) => (
+       {/* {['Saved'].map((text, index) => (
           <ListItem 
           button key={text}
           component={Link} to="/saved-doctors"
@@ -190,8 +197,8 @@ return(
             <ListItemIcon><PeopleOutlineIcon style={{color:'#375C23'}}/></ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
-        ))}
-       {['Search'].map((text, index) => (
+        ))} */}
+       {['Find Specialist'].map((text, index) => (
           <ListItem 
           button key={text}
           component={Link} to='/search'
@@ -205,7 +212,8 @@ return(
       {['Log Out'].map((text, index) => (
           <ListItem 
           button key={text}
-          component={Link} to='/sign-in'
+          //component={Link} to='/sign-in'
+          onClick={logout}
           >
             <ListItemIcon><ExitToAppRoundedIcon style={{color:'#375C23'}}/></ListItemIcon>
             <ListItemText primary={text} />

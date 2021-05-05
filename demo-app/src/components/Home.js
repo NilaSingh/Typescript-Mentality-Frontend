@@ -12,20 +12,18 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(2),
     margin: 'auto',
-    maxWidth: 500,
-    padding: '10%',
+    maxWidth: 580,
   },
   image: {
-    width: 128,
-    height: 128,
+    width: 328,
+    height: 328,
   },
   img: {
     margin: 'auto',
     display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
+    maxHeight: '110%',
+    maxWidth: '180%',
   },
 
 }));
@@ -45,10 +43,7 @@ export default function Home(){
         <Grid container spacing={2}>
           <Grid item>
             <Grid Item className={classes.image}>
-              <img className={classes.img} alt="complex" src="/assets/background.jpg" />
-              <Typography gutterBottom variant="subtitle1">
-                  Logo Text
-                </Typography>
+              <img className={classes.img} alt="complex" src="/assets/logo.png" />
             </Grid>
           </Grid>
           <Grid item xs={12} sm container>

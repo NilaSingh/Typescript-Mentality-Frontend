@@ -164,15 +164,6 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))}
-       {['Search'].map((text, index) => (
-          <ListItem 
-          button key={text}
-          component={Link} to='/search'
-          >
-            <ListItemIcon><FindInPageRoundedIcon style={{color:'#375C23'}}/></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
       <Divider />
       <List>
       {['Sign In'].map((text, index) => (

@@ -26,7 +26,7 @@ export default function App() {
 
 
   let isSignedIn = window.localStorage.getItem("token") in [null, ""]; //? false : true;
-  if (isSignedIn === false) {
+  if (isSignedIn === true) {
     console.log(window.localStorage.getItem("token"));
   return(
     <div>
@@ -39,9 +39,9 @@ export default function App() {
        <Route path='/register'>
          <Register />
        </Route>
-       <Route path="/saved-doctors">
+       {/* <Route path="/saved-doctors">
          <SavedDoctors />
-        </Route>
+        </Route> */}
         <Route path ="/search">
           <Search />
         </Route>
@@ -68,9 +68,9 @@ export default function App() {
          <Route path='/register'>
            <Register />
          </Route>
-         <Route path="/saved-doctors">
+         {/* <Route path="/saved-doctors">
            <SavedDoctors />
-          </Route>
+          </Route> */}
           <Route path ="/search">
             <Search />
           </Route>

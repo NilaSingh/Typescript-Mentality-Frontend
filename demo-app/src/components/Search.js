@@ -108,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Search() {
+export default function Search() {
   const gridclass=gridStyles()
   const classes = useStyles();
   const [input, setInput] = useState("");
@@ -117,22 +117,24 @@ function Search() {
     setChecked(true);
   }, []);
   const[user, setUser]=useFormFields({
-    insurance:'',
+    account_type:'',
     medical_issue:'',
-    doctor_name:''
+    username:''
   });
 
 const handleSubmit = e =>{
 e.preventDefault()
-let insuranceType=JSON.stringify(user.insurance)
-insuranceType=insuranceType.replace(/['"]+/g, '')
+let accountType=JSON.stringify(user.account_type)
+accountType=accountType.replace(/['"]+/g, '')
+console.log(accountType)
 
 let medicalIssue=JSON.stringify(user.medical_issue)
 medicalIssue=medicalIssue.replace(/['"]+/g, '')
+console.log(medicalIssue)
 
-let doctorName=JSON.stringify(user.doctor_name)
-doctorName=doctorName.replace(/['"]+/g, '')
-console.log(doctorName)
+let userName=JSON.stringify(user.username)
+userName=userName.replace(/['"]+/g, '')
+console.log(userName)
 //add filtering specs here
 }
 
@@ -252,10 +254,10 @@ console.log(doctorName)
           <input 
             margin="small"
             size="small"
-            name="doctor_name"
+            name="username"
             id='searchField'
-            defaultValue={user.doctor_name}
-            placeholder="Doctor Name Search"
+            defaultValue={user.username}
+            placeholder="Search"
             onChange={setUser}
             className={classes.searchfield}
           />
@@ -266,7 +268,7 @@ console.log(doctorName)
             size="small"
             onClick={handleSubmit}
           >
-            Search Doctor
+            Search
           </Button>
         </form>
         <div className='page-container'>
@@ -275,8 +277,9 @@ console.log(doctorName)
           <filter>Filter By :</filter>
         </div>
         <div>
-          <filterby>Insurance</filterby><br/>
-          <input type="radio" value='Atena' onClick={setUser} name='insurance' /> Atena<br/>
+          <filterby>Account</filterby><br/>
+          <input type="radio" value='User' onClick={setUser} name='account_type' /> User<br/>
+          <input type="radio" value='Specialist' onClick={setUser} name='account_type' /> Specialist<br/>
         </div>
           <div>
             <filterby>Medical Issue</filterby><br/>
@@ -296,4 +299,3 @@ console.log(doctorName)
       </body>
     );
   }
-export default Search;
