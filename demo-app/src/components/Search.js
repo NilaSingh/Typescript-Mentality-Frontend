@@ -106,6 +106,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 50,
     left:'46vw',
   },
+  textcolor:{
+    color:'#375C23'
+  },
 }));
 
 export default function Search() {
@@ -274,16 +277,21 @@ console.log(userName)
         <div className='page-container'>
         <div className='filter-container'>
         <div>
-          <filter>Filter By :</filter>
+          <h2 className={classes.textcolor}>Filter By :</h2>
         </div>
         <div>
-          <filterby>Account</filterby><br/>
-          <input type="radio" value='User' onClick={setUser} name='account_type' /> User<br/>
-          <input type="radio" value='Specialist' onClick={setUser} name='account_type' /> Specialist<br/>
+          <h3 className={classes.textcolor}>Account:</h3>
+          <input  type="radio" value='User' onClick={setUser} name='account_type' /><t className={classes.textcolor}>User</t><br/>
+          <input type="radio" value='Specialist' onClick={setUser} name='account_type' /><t className={classes.textcolor}>Specialist</t><br/><br/>
         </div>
           <div>
-            <filterby>Medical Issue</filterby><br/>
-          <input type="radio" value="Anxiety" onClick={setUser} name="medical_issue" />Anxiety<br/>
+            <h3 className={classes.textcolor}>Medical Issue:</h3>
+          <input type="radio" value="Anxiety" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Anxiety</t><br/>
+          <input type="radio" value="Anxiety" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Depression</t><br/>
+          <input type="radio" value="Anxiety" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Bipolar Disorder</t><br/>
+          <input type="radio" value="Anxiety" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Eating Disorder</t><br/>
+          <input type="radio" value="Anxiety" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Post-traumatic Stress Disorder</t><br/>
+          <input type="radio" value="Anxiety" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Dissociative Disorder</t><br/>
           </div>
         {/* <div><ViewButton /></div><br/> */}
         <Button

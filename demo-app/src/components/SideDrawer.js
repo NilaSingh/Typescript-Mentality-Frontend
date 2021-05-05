@@ -11,6 +11,9 @@ import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import PostAddRoundedIcon from '@material-ui/icons/PostAddRounded';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
+import SideDrawer2 from "./SideDrawer2.js"
+import { useHistory } from "react-router-dom";
+
 import {
   Button,
   List,
@@ -28,6 +31,7 @@ import {
   TextField,
   Grid,
 } from "@material-ui/core";
+import { render } from "react-dom";
 const drawerWidth = 240;
 
 const TypographyStyle = withStyles({
@@ -93,6 +97,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function logout(e){
+  let isSignedIn = window.localStorage.getItem("token") in [null, ""];
+  isSignedIn=false
+  console.log(isSignedIn)
+};
+
 export default function SideDrawer() {
   const classes = useStyles();
   const theme = useTheme();
@@ -105,14 +115,7 @@ export default function SideDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const logout = () => {
-    let isSignedIn = window.localStorage.getItem("token") in [null, ""];
-    isSignedIn=false
-    console.log(isSignedIn)
-    //add code to refresh page
-  }
 
-  
 return(
   <div className={classes.root}>
     <CssBaseline />

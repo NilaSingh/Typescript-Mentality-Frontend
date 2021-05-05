@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SideDrawer() {
+export default function SideDrawer2() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
