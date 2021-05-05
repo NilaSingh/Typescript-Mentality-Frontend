@@ -1,5 +1,9 @@
 # Mentality #
 
+Roles:
+Project Manager/Fullstack Developer : Nila Singh
+Scrum Master/Fullstack Developer : Nila Singh
+
 ## Mental health doctor discovery ##
 
 ## Your mental health helper for bringing doctors and patients together ##
