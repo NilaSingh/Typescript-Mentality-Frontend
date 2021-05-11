@@ -3,6 +3,7 @@ import React from "react";
 // import axios from 'axios';
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import { register } from "../services/auth";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useFormFields } from "../lib/customHooks";
 import {
@@ -12,7 +13,6 @@ import {
   TextField,
   Button,
   Typography,
-  Link,
   Collapse,
   Container,
 } from "@material-ui/core";
@@ -46,7 +46,18 @@ const useStyles = makeStyles((theme) => ({
     top: 30,
     marginBottom: 50,
   },
-  container: {},
+  justify: {
+    color:  "#375C23",
+    paddingLeft:"13vw",
+    paddingTop: "2vw"
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxHeight: '50%',
+    maxWidth: '50%', 
+    paddingTop: '3vw',
+  }
 }));
 
 export default function Register({ setLoggedIn, loggedIn }) {
@@ -60,8 +71,8 @@ export default function Register({ setLoggedIn, loggedIn }) {
     user_name: "",
     password: "",
     email: "",
-    insurance: "",
-    acct_type: "Patient",
+    medical_issue: "",
+    account_type: "",
   });
 
 //   const handleRegister = (event) => {
@@ -70,6 +81,20 @@ export default function Register({ setLoggedIn, loggedIn }) {
 //     history.push("/profile/home");
 //     setLoggedIn(true);
 //   };
+  const handleClick = (e) => {
+    let accountType=JSON.stringify(user.account_type)
+    accountType=accountType.replace(/['"]+/g, '')
+    console.log(accountType)
+
+  let medicalIssue=JSON.stringify(user.medical_issue)
+  medicalIssue=medicalIssue.replace(/['"]+/g, '')
+  console.log(medicalIssue)
+
+  let userName=JSON.stringify(user.user_name)
+  userName=userName.replace(/['"]+/g, '')
+  console.log(userName)
+
+  }
 
   useEffect(() => {
     setChecked(true);
@@ -79,6 +104,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
       <Container className={classes.container}>
         <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
           <Paper elevation={20} className={classes.paper}>
+          <img className={classes.img} alt="complex" src="/assets/logo.png" />
             <Grid
               container
               spacing={1}
@@ -95,12 +121,24 @@ export default function Register({ setLoggedIn, loggedIn }) {
               />
             </Grid>
             <form autoComplete="off">  {/*onSubmit={handleRegister}> */}
+            <p className={classes.justify}><input 
+                type="radio" 
+                value="Specialist" 
+                onClick={setUser} 
+                name="account_type" />
+                <t>Specialist</t>
+              <input 
+                type="radio" 
+                value="Regular User" 
+                onClick={setUser} 
+                name="account_type" />
+                <t>Looking for a Specialist</t><br/></p>
               <Grid container justify="space-around" spacing={1}>
                 <Grid item>
                   <TextField
                     margin="small"
                     size="small"
-                    label="First Name"
+                    placeholder="First Name"
                     name="first_name"
                     defaultValue={user.first_name}
                     onChange={setUser}
@@ -110,7 +148,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
                   <TextField
                     margin="small"
                     size="small"
-                    label="Last Name"
+                    placeholder="Last Name"
                     name="last_name"
                     defaultValue={user.last_name}
                     onChange={setUser}
@@ -121,7 +159,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
                     margin="small"
                     size="small"
                     className={classes.inputUsername}
-                    label="Username"
+                    placeholder="Username"
                     name="user_name"
                     defaultValue={user.user_name}
                     onChange={setUser}
@@ -132,7 +170,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
                   <TextField
                     margin="small"
                     size="small"
-                    label="Password"
+                    placeholder="Password"
                     type="password"
                     name="password"
                     defaultValue={user.password}
@@ -143,7 +181,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
                   <TextField
                     margin="small"
                     size="small"
-                    label="E-mail"
+                    placeholder="E-mail"
                     name="email"
                     defaultValue={user.email}
                     onChange={setUser}
@@ -153,9 +191,9 @@ export default function Register({ setLoggedIn, loggedIn }) {
                   <TextField
                     margin="small"
                     size="small"
-                    label="Insurance"
-                    name="insurance"
-                    defaultValue={user.insurance}
+                    placeholder="Related Mental Health Concern"
+                    name="medical_issue"
+                    defaultValue={user.medical_issue}
                     onChange={setUser}
                   />
                 </Grid>
@@ -164,6 +202,8 @@ export default function Register({ setLoggedIn, loggedIn }) {
                 className={classes.signUp}
                 type="submit"
                 variant="contained"
+                component={Link} to='/sign-in'
+                onClick={handleClick}
               >
                 Sign up
               </Button>

@@ -57,6 +57,13 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "14px",
     color: "#375C23",
   },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxHeight: '50%',
+    maxWidth: '50%', 
+    paddingTop: '3vw',
+  }
 }));
 function SignIn() {
   const [businessLogin, setBusinessLogin] = useFormFields({
@@ -85,11 +92,7 @@ function SignIn() {
                   alignContent="center"
                   wrap="nowrap"
                 >
-                  <img
-                    className={classes.logo}
-                    src="/assets/BizWiz landing logo.PNG"
-                    alt=""
-                  />
+                <img className={classes.img} alt="complex" src="/assets/logo.png" />
                 </Grid>
                 <TextField
 

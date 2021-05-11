@@ -26,7 +26,7 @@ export default function App() {
 
 
   let isSignedIn = window.localStorage.getItem("token") in [null, ""]; //? false : true;
-  if (isSignedIn === true) {
+  if (isSignedIn === false) {
     console.log(window.localStorage.getItem("token"));
   return(
     <div>
