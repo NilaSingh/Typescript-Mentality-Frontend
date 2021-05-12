@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Fade, Grow, makeStyles } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
+import { Fade, makeStyles } from "@material-ui/core";
 import "./Home.css"
-import { Route } from "react-router";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

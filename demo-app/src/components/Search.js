@@ -2,40 +2,9 @@ import React, {useState, useEffect } from "react";
 import { useFormFields} from "../lib/customHooks";
 import {
   makeStyles,
-  Box,
   Button,
-  Grid,
-  TextField,
-  Card,
-  TextareaAutosize,
-  Grow
 } from "@material-ui/core";
-import ReactDOM from 'react-dom'
 
-const businessStyles=makeStyles((theme)=>({
-  businessStyle:{
-    color: "white"
-  },
-}));
-
-const buttonStyles = makeStyles((theme) => ({
-  submitButton: {
-    "&:hover": {
-      borderColor: "#adcaec",
-      boxShadow: "0 1px 6px #adcaec",
-      backgroundColor: "#12417b",
-      color: "white",
-    },
-    color: "#f6f8f9",
-    background: "#2c63a6",
-    padding: "12px 18px",
-    fontSize: "14px",
-    lineHeight: "16px",
-    height: "auto",
-    borderWidth: "0",
-    borderRadius: "30px",
-  },
-}));
 
 const gridStyles = makeStyles({
   card: {
