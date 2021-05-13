@@ -117,49 +117,56 @@ if(accountType&&medicalIssue&&userName){
   .then(res =>{
     const users=res.data
     const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-    ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+    ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
   else if(accountType&&medicalIssue&&!userName){
     axios.get(``) //filter account type and medical issue
       .then(res =>{
         const users=res.data
         const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+        console.log(usersList)
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
     else if(accountType&&userName&&!medicalIssue){
       axios.get(``)   //filter account type and username
       .then(res =>{
         const users=res.data
         const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+        console.log(usersList)
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
       else if(medicalIssue&&userName&&!accountType){
         axios.get(``) //filter medical issue and username
         .then(res =>{
           const users=res.data
           const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-          ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+          console.log(usersList)
+          ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
         else if(accountType&&!userName&&!medicalIssue){
           axios.get(``) //filter accounttype
           .then(res =>{
             const users=res.data
             const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-            ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+            console.log(usersList)
+            ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
           else if(medicalIssue&&!accountType&&!userName){
             axios.get(``) //filter medical issue
             .then(res =>{
               const users=res.data
               const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-              ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+              console.log(usersList)
+              ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
             else if(userName&&!medicalIssue&&!accountType){
               axios.get(``) //filter username
               .then(res =>{
                 const users=res.data
                 const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-                ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+                console.log(usersList)
+                ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
               else{
                 axios.get(``)   //show all if no filter selected
                 .then(res =>{
                   const users=res.data
                   const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-                  ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})
+                  console.log(usersList)
+                  ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})
               }
 
 
