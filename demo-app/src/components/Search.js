@@ -4,6 +4,7 @@ import {
   makeStyles,
   Button,
 } from "@material-ui/core";
+import axios from 'axios';
 
 
 const gridStyles = makeStyles({
@@ -108,6 +109,59 @@ let userName=JSON.stringify(user.username)
 userName=userName.replace(/['"]+/g, '')
 console.log(userName)
 //add filtering specs here
+
+if(accountType&&medicalIssue&&userName){
+  axios.get(``)   //axios function to get all filtered
+  .then(res =>{
+    const users=res.data
+    const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+    ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+  else if(accountType&&medicalIssue&&!userName){
+    axios.get(``) //filter account type and medical issue
+      .then(res =>{
+        const users=res.data
+        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+    else if(accountType&&userName&&!medicalIssue){
+      axios.get(``)   //filter account type and username
+      .then(res =>{
+        const users=res.data
+        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+      else if(medicalIssue&&userName&&!accountType){
+        axios.get(``) //filter medical issue and username
+        .then(res =>{
+          const users=res.data
+          const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+          ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+        else if(accountType&&!userName&&!medicalIssue){
+          axios.get(``) //filter accounttype
+          .then(res =>{
+            const users=res.data
+            const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+            ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+          else if(medicalIssue&&!accountType&&!userName){
+            axios.get(``) //filter medical issue
+            .then(res =>{
+              const users=res.data
+              const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+              ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+            else if(userName&&!medicalIssue&&!accountType){
+              axios.get(``) //filter username
+              .then(res =>{
+                const users=res.data
+                const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+                ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})}
+              else{
+                axios.get(``)   //show all if no filter selected
+                .then(res =>{
+                  const users=res.data
+                  const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+                  ReactDOM.render(<div>{usersList}</div>,document.getElementById(''))})
+              }
+
+
+
 }
 
 
