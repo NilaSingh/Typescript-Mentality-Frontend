@@ -113,55 +113,55 @@ console.log(userName)
 //add filtering specs here
 
 if(accountType&&medicalIssue&&userName){
-  axios.get(``)   //axios function to get all filtered
+  axios.get(`http://localhost:3000/users/`)   //axios function to get all filtered
   .then(res =>{
     const users=res.data
     const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
     ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
   else if(accountType&&medicalIssue&&!userName){
-    axios.get(``) //filter account type and medical issue
+    axios.get(`http://localhost:3000/users/`) //filter account type and medical issue
       .then(res =>{
         const users=res.data
         const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
         console.log(usersList)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
     else if(accountType&&userName&&!medicalIssue){
-      axios.get(``)   //filter account type and username
+      axios.get(`http://localhost:3000/users/`)   //filter account type and username
       .then(res =>{
         const users=res.data
         const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
         console.log(usersList)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
       else if(medicalIssue&&userName&&!accountType){
-        axios.get(``) //filter medical issue and username
+        axios.get(`http://localhost:3000/users/`) //filter medical issue and username
         .then(res =>{
           const users=res.data
           const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
           console.log(usersList)
           ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
         else if(accountType&&!userName&&!medicalIssue){
-          axios.get(``) //filter accounttype
+          axios.get(`http://localhost:3000/users/get-account-type/${accountType}`) //filter accounttype
           .then(res =>{
             const users=res.data
             const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
             console.log(usersList)
             ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
           else if(medicalIssue&&!accountType&&!userName){
-            axios.get(``) //filter medical issue
+            axios.get(`http://localhost:3000/users/get-account-type/${medicalIssue}`) //filter medical issue
             .then(res =>{
               const users=res.data
               const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
               console.log(usersList)
               ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
             else if(userName&&!medicalIssue&&!accountType){
-              axios.get(``) //filter username
+              axios.get(`http://localhost:3000/users/get-account-type/${userName}`) //filter username
               .then(res =>{
                 const users=res.data
                 const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
                 console.log(usersList)
                 ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
               else{
-                axios.get(``)   //show all if no filter selected
+                axios.get(`http://localhost:3000/users/all-users`)   //show all if no filter selected
                 .then(res =>{
                   const users=res.data
                   const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
