@@ -1,10 +1,11 @@
-// import { Button, Form } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import { login } from "../services/auth.js";
+// // import "bootstrap/dist/css/bootstrap.min.css";
+// // import { login } from "../services/auth.js";
 import AccountProfile from "./AccountProfile.js"
 import SideDrawer from "./SideDrawer.js"
 import SideDrawer2 from "./SideDrawer2.js"
-import { useFormFields } from "../lib/customHooks";
+// import { useFormFields } from "../lib/customHooks";
+
+// import { AccountCircle, LockRounded } from "@material-ui/icons";
 import {
   Grid,
   Paper,
@@ -16,21 +17,49 @@ import {
   Link,
   Collapse,
 } from "@material-ui/core";
-import { AccountCircle, LockRounded } from "@material-ui/icons";
-import { useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
+import { useFormFields} from "../lib/customHooks";
+import ReactDOM from 'react-dom';
+import axios from 'axios';
 
+const gridStyles = makeStyles({
+  card: {
+    maxWidth: 345,
+    boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
+    backgroundColor: "#fafafa",
+  },
+  media: {
+    height: 300,
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: "20px",
-    minHeight: "500px",
-    maxHeight: "70vh",
-    width: 380,
-    margin: "20px auto",
-  },
-  inputField: {
+  searchfield: {
+    "&:hover": {
+      borderColor: "rgba(223,225,229,0)",
+      boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
+    },
+    "&:focus": {
+      borderColor: "rgba(223,225,229,0)",
+      boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
+    },
+    backgroundColor: "#00000000",
     display: "flex",
-    flexDirection: "column",
+    border: " 1px solid #dfe1e5",
+    borderRadius: "24px",
+    height: "44px",
+    margin: "20px auto 20px",
+    width: "300px",
+    outline: "none",
+    textIndent: "30px",
+    textDecoration: "none",
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxHeight: '50%',
+    maxWidth: '50%', 
+    paddingTop: '3vw',
   },
   signIn: {
     "&:hover": {
@@ -40,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     },
     color: "#f6f8f9",
     background: '#375C23',
-    padding: "12px 18px",
+    padding: "10px 15px",
     fontSize: "14px",
     lineHeight: "16px",
     height: "auto",
@@ -49,42 +78,56 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     marginBottom: 40,
   },
-  signUp: {
-    alignContent: "center",
-    marginLeft: 70,
+  paper: {
+    padding: "20px",
+    minHeight: "500px",
+    maxHeight: "70vh",
+    width: 380,
+    margin: "20px auto",
   },
-  signInIcons: {
-    paddingBottom: "14px",
-    color: "#375C23",
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxHeight: '50%',
-    maxWidth: '50%', 
-    paddingTop: '3vw',
+  buttonPadding:{
+    paddingLeft: '12vw'
   }
 }));
-function SignIn() {
-  const [businessLogin, setBusinessLogin] = useFormFields({
-    user_name: "",
-    password: "",
-  });
 
-
+export default function SignIn() {
+  const gridclass=gridStyles()
   const classes = useStyles();
+  const [input, setInput] = useState("");
   const [checked, setChecked] = useState(false);
   useEffect(() => {
     setChecked(true);
   }, []);
+  const[user, setUser]=useFormFields({
+    username:'',
+    password:'',
 
+  });
+
+const handleSubmit = e =>{
+e.preventDefault()
+
+let userName=JSON.stringify(user.username)
+userName=userName.replace(/['"]+/g, '')
+console.log(userName)
+
+let passWord=JSON.stringify(user.password)
+passWord=passWord.replace(/['"]+/g, '')
+console.log(passWord)
+
+if(userName&&passWord){
+  axios.get(``)
+    .then(res => {
+      const user=res.data
+    })
+}
+
+            }
     return (
-      <div>
+      <body>
         <Grid>
-          <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
-            <Paper elevation={10} className={classes.paper}>
-              <div className={classes.inputField}>
-                <Grid
+          <Paper elevation={10} className={classes.paper}>
+          <Grid
                   container
                   spacing={1}
                   direction="row"
@@ -94,55 +137,44 @@ function SignIn() {
                 >
                 <img className={classes.img} alt="complex" src="/assets/logo.png" />
                 </Grid>
-                <TextField
-
-                  margin="normal"
-                  label="Username"
-                  placeholder="Enter Username"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment
-                        className={classes.signInIcons}
-                        position="start"
-                      >
-                        <AccountCircle />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <TextField
-                  margin="normal"
-                  label="Password"
-                  type="password"
-                  placeholder="Enter Password"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment
-                        className={classes.signInIcons}
-                        position="start"
-                      >
-                        <LockRounded />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <Button
-                  className={classes.signIn}
-                  type="submit"
-                  variant="contained"
-                >
-                  Sign In
-                </Button>
-                <Typography variant="subtitle2" className={classes.signUp}>
+        <form>
+          <input 
+            margin="small"
+            size="small"
+            name="username"
+            id='searchField'
+            defaultValue={user.username}
+            placeholder="Username"
+            onChange={setUser}
+            className={classes.searchfield}
+          />
+          <input 
+            margin="small"
+            size="small"
+            name="password"
+            id='searchField'
+            defaultValue={user.password}
+            placeholder="Password"
+            onChange={setUser}
+            className={classes.searchfield}
+          />
+          <div className={classes.buttonPadding}>
+          <Button
+            type="submit"
+            className={classes.signIn}
+            variant="contained"
+            size="small"
+            onClick={handleSubmit}
+          >
+            Sign In
+          </Button>
+          </div>
+          <Typography variant="subtitle2" className={classes.signUp}>
                   Don't have an account? <Link href="/register">Sign Up</Link>
                 </Typography>
-              </div>
-            </Paper>
-          </Collapse>
+        </form>
+        </Paper>
         </Grid>
-      </div>
+      </body>
     );
-  }
-
-
-export default SignIn;
+}

@@ -24,14 +24,13 @@ export default function App() {
 //     console.log("2");
 };
 
-
   let isSignedIn = window.localStorage.getItem("token") in [null, ""]; //? false : true;
-  if (isSignedIn === true) {
+  if (isSignedIn==true) {
     console.log(window.localStorage.getItem("token"));
   return(
     <div>
       <Router> 
-      <SideDrawer2 />
+      <SideDrawer />
       <Switch>
         <Route path='/my-notes'>
           <Notes />
@@ -59,11 +58,11 @@ export default function App() {
       </div>
   )
   }
-  else{
+  else if (!isSignedIn){
     return(
       <div>
         <Router> 
-        <SideDrawer />
+        <SideDrawer2 />
         <Switch>
          <Route path='/register'>
            <Register />
