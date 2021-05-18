@@ -7,7 +7,7 @@ import AccountProfile from "./components/AccountProfile.js"
 import Register from "./components/Register.js"
 import Search from "./components/Search.js"
 import Chat from "./components/Chat.js"
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import Notes from "./components/Notes.js";
 
 
