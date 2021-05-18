@@ -16,8 +16,11 @@ import {
   Collapse,
   Container,
 } from "@material-ui/core";
+import SideDrawer from "./SideDrawer.js"
+import SideDrawer2 from "./SideDrawer2.js"
 
 import { useHistory } from "react-router";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -82,25 +85,62 @@ export default function Register({ setLoggedIn, loggedIn }) {
 //     setLoggedIn(true);
 //   };
   const handleClick = (e) => {
-    let accountType=JSON.stringify(user.account_type)
-    accountType=accountType.replace(/['"]+/g, '')
-    console.log(accountType)
+    e.preventDefault()
+  let firstName=JSON.stringify(user.first_name)
+  firstName=firstName.replace(/['"]+/g, '')
+  console.log(firstName)
 
-  let medicalIssue=JSON.stringify(user.medical_issue)
-  medicalIssue=medicalIssue.replace(/['"]+/g, '')
-  console.log(medicalIssue)
+  let lastName=JSON.stringify(user.last_name)
+  lastName=lastName.replace(/['"]+/g, '')
+  console.log(lastName)
 
   let userName=JSON.stringify(user.user_name)
   userName=userName.replace(/['"]+/g, '')
   console.log(userName)
 
-  }
+  let passWord=JSON.stringify(user.password)
+  passWord=passWord.replace(/['"]+/g, '')
+  console.log(passWord)
+
+  let eMail=JSON.stringify(user.email)
+  eMail=eMail.replace(/['"]+/g, '')
+  console.log(eMail)
+ 
+  let medicalIssue=JSON.stringify(user.medical_issue)
+  medicalIssue=medicalIssue.replace(/['"]+/g, '')
+  console.log(medicalIssue)
+
+  let accountType=JSON.stringify(user.account_type)
+  accountType=accountType.replace(/['"]+/g, '')
+  console.log(accountType)
+  
+  axios.post('https://mental-health-database.herokuapp.com/users/all-users',{ //here add link from route to register a user
+    first_name:firstName,
+    last_name:lastName,
+    user_name:userName,
+    email:eMail,
+    password:passWord,
+    medical_issue:medicalIssue,
+    account_type:accountType,
+  })
+  .then(function(res){
+    console.log(res)
+  })
+  .catch(function(err){
+    console.log(err)
+  })
+}
+  
 
   useEffect(() => {
     setChecked(true);
   }, []);
+
+let isSignedIn = window.localStorage.getItem("token") in [null, ""]; //? false : true;
+  if (isSignedIn===false) { //set to true
   return (
     <div>
+      <SideDrawer />
       <Container className={classes.container}>
         <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
           <Paper elevation={20} className={classes.paper}>
@@ -220,4 +260,128 @@ export default function Register({ setLoggedIn, loggedIn }) {
       </Container>
     </div>
   );
+  }else{
+    return (
+      <div>
+        <SideDrawer2 />
+        <Container className={classes.container}>
+          <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
+            <Paper elevation={20} className={classes.paper}>
+            <img className={classes.img} alt="complex" src="/assets/logo.png" />
+              <Grid
+                container
+                spacing={1}
+                direction="row"
+                justify="center"
+                alignItems="center"
+                alignContent="center"
+                wrap="nowrap"
+              >
+                <img
+                  className={classes.logo}
+                  src="/assets/BizWiz landing logo.PNG"    /////add logo
+                  alt=""
+                />
+              </Grid>
+              <form autoComplete="off">  {/*onSubmit={handleRegister}> */}
+              <p className={classes.justify}><input 
+                  type="radio" 
+                  value="Specialist" 
+                  onClick={setUser} 
+                  name="account_type" />
+                  <t>Specialist</t>
+                <input 
+                  type="radio" 
+                  value="Regular User" 
+                  onClick={setUser} 
+                  name="account_type" />
+                  <t>Looking for a Specialist</t><br/></p>
+                <Grid container justify="space-around" spacing={1}>
+                  <Grid item>
+                    <TextField
+                      margin="small"
+                      size="small"
+                      placeholder="First Name"
+                      name="first_name"
+                      defaultValue={user.first_name}
+                      onChange={setUser}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      margin="small"
+                      size="small"
+                      placeholder="Last Name"
+                      name="last_name"
+                      defaultValue={user.last_name}
+                      onChange={setUser}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      margin="small"
+                      size="small"
+                      className={classes.inputUsername}
+                      placeholder="Username"
+                      name="user_name"
+                      defaultValue={user.user_name}
+                      onChange={setUser}
+                    />
+                  </Grid>
+  
+                  <Grid item>
+                    <TextField
+                      margin="small"
+                      size="small"
+                      placeholder="Password"
+                      type="password"
+                      name="password"
+                      defaultValue={user.password}
+                      onChange={setUser}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      margin="small"
+                      size="small"
+                      placeholder="E-mail"
+                      name="email"
+                      defaultValue={user.email}
+                      onChange={setUser}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      margin="small"
+                      size="small"
+                      placeholder="Related Mental Health Concern"
+                      name="medical_issue"
+                      defaultValue={user.medical_issue}
+                      onChange={setUser}
+                    />
+                  </Grid>
+                </Grid>
+                <Button
+                  className={classes.signUp}
+                  type="submit"
+                  variant="contained"
+                  component={Link} to='/sign-in'
+                  onClick={handleClick}
+                >
+                  Sign up
+                </Button>
+                <Typography 
+                justify="center"
+                alignItems="center"
+                alignContent="center"
+                variant="subtitle2">
+                  <Link href="/sign-in">Have an account? Sign In</Link>
+                </Typography>
+              </form>
+            </Paper>
+          </Collapse>
+        </Container>
+      </div>
+    );
+  }
 }

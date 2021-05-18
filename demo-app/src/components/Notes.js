@@ -6,6 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import { Button } from "@material-ui/core";
 import { useFormFields } from "../lib/customHooks";
 import ReactDOM from 'react-dom'
+import SideDrawer from "./SideDrawer.js"
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -52,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Home(){
+export default function Notes(){
   const classes = useStyles();
   const [checked, setChecked] = useState(false);
   useEffect(() => {
@@ -73,6 +75,7 @@ export default function Home(){
 
  return(
     <div>
+      <SideDrawer />
     <Paper className={classes.paper}>
         <Grid container spacing={2}>
         <form>
@@ -93,4 +96,3 @@ export default function Home(){
       </div>
   )
 }
-

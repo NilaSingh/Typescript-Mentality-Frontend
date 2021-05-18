@@ -8,6 +8,8 @@ import {
   Button,
 } from "@material-ui/core";
 import axios from 'axios';
+import "./Search.css"
+import SideDrawer from "./SideDrawer.js"
 
 const gridStyles = makeStyles({
   card: {
@@ -81,6 +83,9 @@ const useStyles = makeStyles((theme) => ({
   textcolor:{
     color:'#375C23'
   },
+  user_container:{
+    padding:'5vw'
+  }
 }));
 
 export default function Search() {
@@ -161,18 +166,17 @@ if(accountType&&medicalIssue&&userName){
                 console.log(usersList)
                 ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
               else{
-                axios.get(`http://localhost:3000/users/all-users`)   //show all if no filter selected
+                axios.get(`https://mental-health-database.herokuapp.com/users/all-users`)   //show all if no filter selected
                 .then(res =>{
                   const users=res.data
-                  const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+                  const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b><p>{user.password}</p></Card><br/></Grid>)
                   console.log(usersList)
                   ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})
               }
-
-
             }
     return (
       <body>
+        <SideDrawer />
         {/* Form now prints to console, now just needs to change what is displayed to the screen */}
         <form>
           <input 
@@ -223,7 +227,7 @@ if(accountType&&medicalIssue&&userName){
         className={classes.filter}
         >Filter</Button>
         </div>
-          <list id='list' className='list-container'>get</list>
+          <list id='list' className='list-container'/>
         </div>
       </body>
     );

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import "./Home.css"
-import SideDrawer from "./SideDrawer.js"
-
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import SideDrawer from "./SideDrawer.js"
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -35,12 +35,12 @@ export default function Home(){
   }, []);
  return(
     <div>
-      <SideDrawer />
+    <SideDrawer />
     <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item>
             <Grid Item>
-                Username
+                Chat
             </Grid>
           </Grid>
           <Grid item xs={12} sm container>

@@ -210,6 +210,15 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))}
+       {['Chat'].map((text, index) => (
+          <ListItem 
+          button key={text}
+          component={Link} to='/chat'
+          >
+            <ListItemIcon><FindInPageRoundedIcon style={{color:'#375C23'}}/></ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
       <Divider />
       <List>
       {['Log Out'].map((text, index) => (

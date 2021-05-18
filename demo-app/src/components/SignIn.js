@@ -4,7 +4,6 @@ import AccountProfile from "./AccountProfile.js"
 import SideDrawer from "./SideDrawer.js"
 import SideDrawer2 from "./SideDrawer2.js"
 // import { useFormFields } from "../lib/customHooks";
-
 // import { AccountCircle, LockRounded } from "@material-ui/icons";
 import {
   Grid,
@@ -90,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+//Dummy User: username:JohnSkelington password:JSkel123
 export default function SignIn() {
   const gridclass=gridStyles()
   const classes = useStyles();
@@ -106,7 +106,6 @@ export default function SignIn() {
 
 const handleSubmit = e =>{
 e.preventDefault()
-
 let userName=JSON.stringify(user.username)
 userName=userName.replace(/['"]+/g, '')
 console.log(userName)
@@ -115,16 +114,77 @@ let passWord=JSON.stringify(user.password)
 passWord=passWord.replace(/['"]+/g, '')
 console.log(passWord)
 
-if(userName&&passWord){
-  axios.get(``)
-    .then(res => {
-      const user=res.data
+if(userName&&passWord){//add link to find user with username and password
+  axios.get(' ')
+    .then(function(res){
+      console.log(res)
     })
-}
+    .catch(function(err){
+      console.log(err)
+    })
+}}
 
-            }
+let isSignedIn = window.localStorage.getItem("token") in [null, ""]; //? false : true;
+if (isSignedIn===false) { //set to true
+  return(
+    <body id='body'>
+      <SideDrawer />
+        <Grid>
+          <Paper elevation={10} className={classes.paper}>
+          <Grid
+                  container
+                  spacing={1}
+                  direction="row"
+                  alignItems="center"
+                  alignContent="center"
+                  wrap="nowrap"
+                >
+                <img className={classes.img} alt="complex" src="/assets/logo.png" />
+                </Grid>
+        <form>
+          <input 
+            margin="small"
+            size="small"
+            name="username"
+            id='searchField'
+            defaultValue={user.username}
+            placeholder="Username"
+            onChange={setUser}
+            className={classes.searchfield}
+          />
+          <input 
+            margin="small"
+            size="small"
+            name="password"
+            id='searchField'
+            defaultValue={user.password}
+            placeholder="Password"
+            onChange={setUser}
+            className={classes.searchfield}
+          />
+          <div className={classes.buttonPadding}>
+          <Button
+            type="submit"
+            className={classes.signIn}
+            variant="contained"
+            size="small"
+            onClick={handleSubmit}
+          >
+            Sign In
+          </Button>
+          </div>
+          <Typography variant="subtitle2" className={classes.signUp}>
+                  Don't have an account? <Link href="/register">Sign Up</Link>
+                </Typography>
+        </form>
+        </Paper>
+        </Grid>
+      </body>
+  )
+}else{
     return (
-      <body>
+      <body id='body'>
+        <SideDrawer2 />
         <Grid>
           <Paper elevation={10} className={classes.paper}>
           <Grid
@@ -178,3 +238,5 @@ if(userName&&passWord){
       </body>
     );
 }
+}
+
