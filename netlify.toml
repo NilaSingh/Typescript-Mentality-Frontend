@@ -1,0 +1,20 @@
+[[redirects]]
+from = "/components/Home.js"
+to = "/"
+status = 301
+force = false
+[[redirects]]
+from = "/components/AccountProfile.js"
+to = "/my-notes"
+status = 301
+force = false
+[[redirects]]
+from = "/components/Register.js"
+to = "/register"
+status = 301
+force = false
+[[redirects]]
+from = "/components/SignIn.js"
+to = "/sign-in"
+status = 301
+force = false
