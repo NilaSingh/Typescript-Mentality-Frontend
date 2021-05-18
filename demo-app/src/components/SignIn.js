@@ -118,17 +118,16 @@ if(userName&&passWord){//add link to find user with username and password
   axios.get(' ')
     .then(function(res){
       console.log(res)
+      //redirect to home page
     })
     .catch(function(err){
       console.log(err)
     })
 }}
 
-let isSignedIn = window.localStorage.getItem("token") in [null, ""]; //? false : true;
-if (isSignedIn===false) { //set to true
   return(
     <body id='body'>
-      <SideDrawer />
+      <SideDrawer2 />
         <Grid>
           <Paper elevation={10} className={classes.paper}>
           <Grid
@@ -181,62 +180,5 @@ if (isSignedIn===false) { //set to true
         </Grid>
       </body>
   )
-}else{
-    return (
-      <body id='body'>
-        <SideDrawer2 />
-        <Grid>
-          <Paper elevation={10} className={classes.paper}>
-          <Grid
-                  container
-                  spacing={1}
-                  direction="row"
-                  alignItems="center"
-                  alignContent="center"
-                  wrap="nowrap"
-                >
-                <img className={classes.img} alt="complex" src="/assets/logo.png" />
-                </Grid>
-        <form>
-          <input 
-            margin="small"
-            size="small"
-            name="username"
-            id='searchField'
-            defaultValue={user.username}
-            placeholder="Username"
-            onChange={setUser}
-            className={classes.searchfield}
-          />
-          <input 
-            margin="small"
-            size="small"
-            name="password"
-            id='searchField'
-            defaultValue={user.password}
-            placeholder="Password"
-            onChange={setUser}
-            className={classes.searchfield}
-          />
-          <div className={classes.buttonPadding}>
-          <Button
-            type="submit"
-            className={classes.signIn}
-            variant="contained"
-            size="small"
-            onClick={handleSubmit}
-          >
-            Sign In
-          </Button>
-          </div>
-          <Typography variant="subtitle2" className={classes.signUp}>
-                  Don't have an account? <Link href="/register">Sign Up</Link>
-                </Typography>
-        </form>
-        </Paper>
-        </Grid>
-      </body>
-    );
-}
 }
 

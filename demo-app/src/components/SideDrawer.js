@@ -225,7 +225,7 @@ return(
           <ListItem 
           button key={text}
           //component={Link} to='/sign-in'
-          onClick={logout}
+          component={Link} to='/sign-in'
           >
             <ListItemIcon><ExitToAppRoundedIcon style={{color:'#375C23'}}/></ListItemIcon>
             <ListItemText primary={text} />
