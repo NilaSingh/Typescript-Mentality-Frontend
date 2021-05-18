@@ -5,7 +5,7 @@ status = 301
 force = false
 [[redirects]]
 from = "/components/AccountProfile.js"
-to = "/my-notes"
+to = "/my-account"
 status = 301
 force = false
 [[redirects]]
@@ -16,5 +16,15 @@ force = false
 [[redirects]]
 from = "/components/SignIn.js"
 to = "/sign-in"
+status = 301
+force = false
+[[redirects]]
+from = "/components/Notes.js"
+to = "/my-notes"
+status = 301
+force = false
+[[redirects]]
+from = "/components/Chat.js"
+to = "/chat"
 status = 301
 force = false
