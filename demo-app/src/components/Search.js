@@ -124,42 +124,50 @@ if(accountType&&medicalIssue&&userName){
     const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
     ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
   else if(accountType&&medicalIssue&&!userName){
-    axios.get(`http://localhost:3000/users/`) //filter account type and medical issue
+    axios.get(`https://mental-health-database.herokuapp.com/users/`) //filter account type and medical issue
       .then(res =>{
         const users=res.data
         const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
         console.log(usersList)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
     else if(accountType&&userName&&!medicalIssue){
-      axios.get(`http://localhost:3000/users/`)   //filter account type and username
+      axios.get(`https://mental-health-database.herokuapp.com/users/`)   //filter account type and username
       .then(res =>{
         const users=res.data
         const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
         console.log(usersList)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
       else if(medicalIssue&&userName&&!accountType){
-        axios.get(`http://localhost:3000/users/`) //filter medical issue and username
+        axios.get(`https://mental-health-database.herokuapp.com/users/`) //filter medical issue and username
         .then(res =>{
           const users=res.data
           const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
           console.log(usersList)
           ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
         else if(accountType&&!userName&&!medicalIssue){
-          axios.get(`http://localhost:3000/users/get-account-type/${accountType}`) //filter accounttype
-          .then(res =>{
-            const users=res.data
-            const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-            console.log(usersList)
-            ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
-          else if(medicalIssue&&!accountType&&!userName){
-            axios.get(`http://localhost:3000/users/get-account-type/${medicalIssue}`) //filter medical issue
+          if(accountType === 'Specialist'){
+            axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/specialist`) //filter accounttype: specialist
+            .then(res =>{
+              const users=res.data
+              const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+              console.log(usersList)
+              ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})
+          }else if(accountType === "User"){
+            axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/patient`) //filter accounttype: patient
+            .then(res =>{
+              const users=res.data
+              const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+              console.log(usersList)
+              ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})
+          }}else if(medicalIssue&&!accountType&&!userName){
+            axios.get(`https://mental-health-database.herokuapp.com/users/specialty-users/${medicalIssue}`) //filter medical issue
             .then(res =>{
               const users=res.data
               const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
               console.log(usersList)
               ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
             else if(userName&&!medicalIssue&&!accountType){
-              axios.get(`http://localhost:3000/users/get-account-type/${userName}`) //filter username
+              axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`) //filter username
               .then(res =>{
                 const users=res.data
                 const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
