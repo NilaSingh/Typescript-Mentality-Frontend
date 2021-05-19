@@ -148,9 +148,13 @@ if(userName&&passWord){//add link to find user with username and password
             Sign In
           </Button>
           </div>
-          <Typography variant="subtitle2" className={classes.signUp}>
-                  Don't have an account? <Link href="/register">Sign Up</Link>
-                </Typography>
+          <Typography 
+          variant="subtitle2" 
+          className={classes.signUp}
+          >
+          Don't have an account? 
+          <Button component= {Link} to ="/register">Sign Up</Button>
+          </Typography>
         </form>
         </Paper>
         </Grid>
