@@ -3,7 +3,7 @@ import React from "react";
 // import axios from 'axios';
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import { register } from "../services/auth";
-import { BrowserRouter as Link} from "react-router-dom";
+import { BrowserRouter as Router, Link} from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useFormFields } from "../lib/customHooks";
 import {
@@ -232,12 +232,12 @@ export default function Register({ setLoggedIn, loggedIn }) {
                   />
                 </Grid>
               </Grid>
+
               <Button
                 className={classes.signUp}
                 type="submit"
                 variant="contained"
-                component={Link} to='/sign-in'
-                onClick={handleClick}
+                component={Link} to = "/sign-in"
               >
                 Sign up
               </Button>
@@ -246,7 +246,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
               alignItems="center"
               alignContent="center"
               variant="subtitle2">
-                <Link href="/sign-in">Have an account? Sign In</Link>
+                <a href="/sign-in">Have an account? Sign In</a>
               </Typography>
             </form>
           </Paper>
