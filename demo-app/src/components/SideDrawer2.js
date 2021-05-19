@@ -6,7 +6,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import PostAddRoundedIcon from '@material-ui/icons/PostAddRounded';
-import { BrowserRouter as Link} from "react-router-dom";
+import { BrowserRouter as Router, Link} from "react-router-dom";
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
 import {
   List,
