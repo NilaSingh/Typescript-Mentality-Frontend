@@ -29,9 +29,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home(){
   const classes = useStyles();
-  useEffect(() => {
-    setChecked(true);
-  }, []);
  return(
     <div>
     <SideDrawer />

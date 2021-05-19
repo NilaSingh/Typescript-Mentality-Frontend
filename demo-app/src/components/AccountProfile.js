@@ -34,10 +34,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home(){
   const classes = useStyles();
-  const [checked, setChecked] = useState(false);
-  useEffect(() => {
-    setChecked(true);
-  }, []);
   axios.get("https://mental-health-database.herokuapp.com/users/all-users")//add link to get single user that is logged in
     .then(res =>{
       console.log(res)
