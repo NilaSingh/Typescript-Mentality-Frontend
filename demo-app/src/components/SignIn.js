@@ -153,7 +153,7 @@ if(userName&&passWord){//add link to find user with username and password
           className={classes.signUp}
           >
           Don't have an account? 
-          <Button component= {Link} to ="/register">Sign Up</Button>
+          <a href="/register">Sign Up</a>
           </Typography>
         </form>
         </Paper>

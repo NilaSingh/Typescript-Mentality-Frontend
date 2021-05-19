@@ -247,7 +247,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
               alignItems="center"
               alignContent="center"
               variant="subtitle2">
-              <Link href="/sign-in">Have an account? Sign In</Link>
+              <a href="/sign-in">Have an account? Sign In</a>
               </Typography>
             </form>
           </Paper>
