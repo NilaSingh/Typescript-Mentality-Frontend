@@ -56,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Notes(){
   const classes = useStyles();
-  const [checked, setChecked] = useState(false);
   useEffect(() => {
     setChecked(true);
   }, []);

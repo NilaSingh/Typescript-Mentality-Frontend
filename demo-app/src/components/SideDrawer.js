@@ -7,11 +7,10 @@ import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
 
 import {
-  Button,
   List,
   ListItemText,
   ListItem,
@@ -23,11 +22,7 @@ import {
   CssBaseline,
   AppBar,
   Toolbar,
-  Container,
-  TextField,
-  Grid,
 } from "@material-ui/core";
-import { render } from "react-dom";
 const drawerWidth = 240;
 
 const TypographyStyle = withStyles({
@@ -93,11 +88,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function logout(e){
-  let isSignedIn = window.localStorage.getItem("token") in [null, ""];
-  isSignedIn=false
-  console.log(isSignedIn)
-};
+// function logout(e){
+//   let isSignedIn = window.localStorage.getItem("token") in [null, ""];
+//   isSignedIn=false
+//   console.log(isSignedIn)
+// };
 
 export default function SideDrawer() {
   const classes = useStyles();

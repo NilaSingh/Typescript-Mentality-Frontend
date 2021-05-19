@@ -18,7 +18,6 @@ import {
 } from "@material-ui/core";
 import SideDrawer2 from "./SideDrawer2.js"
 
-import { useHistory } from "react-router";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Register({ setLoggedIn, loggedIn }) {
-  const history = useHistory();
 
   const classes = useStyles();
   const [checked, setChecked] = useState(false);

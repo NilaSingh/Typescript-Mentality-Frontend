@@ -89,13 +89,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Search() {
-  const gridclass=gridStyles()
   const classes = useStyles();
-  const [input, setInput] = useState("");
-  const [checked, setChecked] = useState(false);
-  useEffect(() => {
-    setChecked(true);
-  }, []);
   const[user, setUser]=useFormFields({
     account_type:'',
     medical_issue:'',
