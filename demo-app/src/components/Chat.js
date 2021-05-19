@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home(){
   const classes = useStyles();
-  const [checked, setChecked] = useState(false);
   useEffect(() => {
     setChecked(true);
   }, []);

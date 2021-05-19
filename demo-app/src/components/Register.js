@@ -3,7 +3,7 @@ import React from "react";
 // import axios from 'axios';
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import { register } from "../services/auth";
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Link} from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useFormFields } from "../lib/customHooks";
 import {

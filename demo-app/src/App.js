@@ -5,21 +5,21 @@ import AccountProfile from "./components/AccountProfile.js"
 import Register from "./components/Register.js"
 import Search from "./components/Search.js"
 import Chat from "./components/Chat.js"
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 import Notes from "./components/Notes.js";
 
 
 export default function App() {
-  const handleLogin = (event) => {
-    event.preventDefault();
-     console.log("1");
-//     try {
-//       login(businessLogin);
-//     } catch (err) {
-//       console.log(err.message);
-//     }
-//     console.log("2");
-};
+//   const handleLogin = (event) => {
+//     event.preventDefault();
+//      console.log("1");
+// //     try {
+// //       login(businessLogin);
+// //     } catch (err) {
+// //       console.log(err.message);
+// //     }
+// //     console.log("2");
+// };
   return(
     <div>
       <Router> 
