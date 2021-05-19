@@ -233,20 +233,21 @@ export default function Register({ setLoggedIn, loggedIn }) {
                 </Grid>
               </Grid>
 
-              <Button
-                className={classes.signUp}
-                type="submit"
-                variant="contained"
-                component={Link} to = "/sign-in"
-              >
-                Sign up
-              </Button>
+            <Button
+            type="submit"
+            className={classes.signUp}
+            variant="contained"
+            size="small"
+            onClick={handleClick}
+          >
+            Sign In
+          </Button>
               <Typography 
               justify="center"
               alignItems="center"
               alignContent="center"
               variant="subtitle2">
-                <a href="/sign-in">Have an account? Sign In</a>
+                <Link href="/sign-in">Have an account? Sign In</Link>
               </Typography>
             </form>
           </Paper>
