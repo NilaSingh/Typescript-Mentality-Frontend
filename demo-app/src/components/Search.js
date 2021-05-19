@@ -1,4 +1,3 @@
-import React, {useState, useEffect } from "react";
 import { useFormFields} from "../lib/customHooks";
 import ReactDOM from 'react-dom';
 import {
@@ -10,17 +9,6 @@ import {
 import axios from 'axios';
 import "./Search.css"
 import SideDrawer from "./SideDrawer.js"
-
-const gridStyles = makeStyles({
-  card: {
-    maxWidth: 345,
-    boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
-    backgroundColor: "#fafafa",
-  },
-  media: {
-    height: 300,
-  },
-});
 
 const useStyles = makeStyles((theme) => ({
   searchfield: {
