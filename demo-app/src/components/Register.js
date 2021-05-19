@@ -238,7 +238,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
             className={classes.signUp}
             variant="contained"
             size="small"
-            onClick={handleClick}
+            component = {Link} to = "/sign-in"
           >
             Sign In
           </Button>
@@ -247,7 +247,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
               alignItems="center"
               alignContent="center"
               variant="subtitle2">
-                <Link href="/sign-in">Have an account? Sign In</Link>
+              <Link href="/sign-in">Have an account? Sign In</Link>
               </Typography>
             </form>
           </Paper>
