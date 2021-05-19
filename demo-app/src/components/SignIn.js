@@ -1,7 +1,5 @@
 // // import "bootstrap/dist/css/bootstrap.min.css";
 // // import { login } from "../services/auth.js";
-import AccountProfile from "./AccountProfile.js"
-import SideDrawer from "./SideDrawer.js"
 import SideDrawer2 from "./SideDrawer2.js"
 // import { useFormFields } from "../lib/customHooks";
 // import { AccountCircle, LockRounded } from "@material-ui/icons";
@@ -9,16 +7,12 @@ import {
   Grid,
   Paper,
   makeStyles,
-  TextField,
   Button,
-  InputAdornment,
   Typography,
   Link,
-  Collapse,
 } from "@material-ui/core";
 import React, {useState, useEffect } from "react";
 import { useFormFields} from "../lib/customHooks";
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 const gridStyles = makeStyles({

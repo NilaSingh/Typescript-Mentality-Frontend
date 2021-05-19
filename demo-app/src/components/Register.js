@@ -16,7 +16,6 @@ import {
   Collapse,
   Container,
 } from "@material-ui/core";
-import SideDrawer from "./SideDrawer.js"
 import SideDrawer2 from "./SideDrawer2.js"
 
 import { useHistory } from "react-router";
