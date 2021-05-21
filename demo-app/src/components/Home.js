@@ -36,8 +36,6 @@ export default function Home(){
   useEffect(() => {
     setChecked(true);
   }, []);
-  let isSignedIn = window.localStorage.getItem("token") in [null, ""]; //? false : true;
-  if (isSignedIn===true) { //set to true
  return(
   <div className="page-container" style={{ backgroundImage: "url(/assets/background.jpg)" }}>
       <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
@@ -60,28 +58,5 @@ export default function Home(){
      </Fade>
   </div>
   )
-}else{
-  return(
-    <div className="page-container" style={{ backgroundImage: "url(/assets/background.jpg)" }}>
-        <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
-      <div>
-        <SideDrawer2 />
-      <Paper className={classes.paper}>
-          <Grid container spacing={2}>
-            <Grid item>
-              <Grid Item className={classes.image}>
-                <img className={classes.img} alt="complex" src="/assets/logo.png" />
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm container>
-            </Grid>
-          </Grid>
-        </Paper>
-        </div>
-       </Fade>
-    </div>
-    )
-
-}
 }
 
