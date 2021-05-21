@@ -8,8 +8,9 @@ import {
 } from "@material-ui/core";
 import axios from 'axios';
 import "./Search.css"
+import React from "react";
 import SideDrawer from "./SideDrawer.js"
-import { AuthProvider } from "../context/auth-context"
+import { AuthContext } from '../context/auth-context'
 const useStyles = makeStyles((theme) => ({
   searchfield: {
     "&:hover": {
@@ -78,68 +79,80 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Search() {
   const classes = useStyles();
-  const[user, setUser]=useFormFields({
+  const[search, setUser]=useFormFields({
     account_type:'',
     medical_issue:'',
     username:''
   });
+  const { user, token } = React.useContext(AuthContext)
 
 const handleSubmit = e =>{
 e.preventDefault()
-let accountType=JSON.stringify(user.account_type) //let account type = to account type of user logged in from auth content
-let medicalIssue=JSON.stringify(user.medical_issue)
-let userName=JSON.stringify(user.username)
+let accountType=user.account_type //let account type = to account type of search logged in from auth content
+let medicalIssue=JSON.stringify(search.medical_issue)
+medicalIssue=medicalIssue.replace(/['"]+/g, '')
+let userName=JSON.stringify(search.username)
+userName=userName.replace(/['"]+/g, '')
+console.log(user.account_type)
 //filtering specs
-if(accountType==="User"){
+if(accountType==="patient"){
   if(medicalIssue&&!userName){
-    axios.get(``)  //get specialist by medical issue and username
+    console.log('searching for specialist treating', medicalIssue)
+    axios.get(``)  //get specialist by medical issue  
       .then(res =>{
         const users=res.data
-        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
-  if(!medicalIssue&&userName){
+  if(userName&&!medicalIssue){
+    console.log('searching for', userName)
     axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get specialist by username fix to only specialists
       .then(res =>{
         const users=res.data
-        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
   if(medicalIssue&&userName){
-    axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/Depression`)  //get specialist by medical issue
+    axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/{}`)  //get specialist by medical issue and username needs to edit
       .then(res =>{
         const users=res.data
-        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
-  if(!medicalIssue&&!userName){
+  if(!medicalIssue.length&&!userName){
+    console.log(medicalIssue)
     axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/specialist`)  //get all specialist 
       .then(res =>{
         const users=res.data
-        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        console.log(users)
+        const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}   
 }
-else if(accountType==="Specialists"){
+else if(accountType==="specialist"){
+  console.log('searching for patient')
   if(medicalIssue&&!userName){
-    axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/${medicalIssue}`)  //get patients by medical issue
+    console.log('searching for patient by medical issue')
+    axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/${medicalIssue}`)  //get patients by medical issue NOT WORKING REVISE URL
       .then(res =>{
         const users=res.data
-        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        const usersList=users.map((search)=><Grid><Card><b>{search.user_name},{search.medical_issue}</b></Card></Grid>)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
   if(!medicalIssue&&userName){
-    axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get patients by medical issue
+    console.log('searching for patient by username')
+    axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get patients by username DONE AND WORKING
       .then(res =>{
         const users=res.data
-        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
   if(medicalIssue&&userName){
     axios.get(``)  //get patients by medical issue and username
       .then(res =>{
         const users=res.data
-        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
   if(!medicalIssue&&!userName){
-    axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/patient`)  //get all patients
+    console.log('searching for all patients no filter selected')
+    axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/patient`)  //get all patients DONE AND WORKING
     .then(res =>{
       const users=res.data
-      const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+      const usersList=users.map((search)=><Grid><Card><b>{search.user_name}, {search.medical_issue}</b></Card></Grid>)
       ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
           }
         }
@@ -153,7 +166,7 @@ else if(accountType==="Specialists"){
             size="small"
             name="username"
             id='searchField'
-            defaultValue={user.username}
+            defaultValue={search.username}
             placeholder="Search"
             onChange={setUser}
             className={classes.searchfield}

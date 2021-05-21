@@ -121,7 +121,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
   //   })
 
     _setToken('aklsdjflaksjflasf')
-    _setUser({ id: 1, first_name: "erwins",last_name:'saget', user_name:'erweezy'})    
+    _setUser({ id: 1, first_name: "erwins",last_name:'saget', user_name:'erweezy', account_type:'patient'})    
   } catch (err) {
     console.log('err', err.message)
   }
@@ -241,7 +241,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
             component = {Link} to = "/sign-in"
             onClick={handleSubmit}
           >
-            Sign In
+            Sign Up
           </Button>
               <Typography 
               justify="center"
