@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import "./Home.css"
 import SideDrawer from "./SideDrawer.js"
 import {
   Grid,
   Card,
-  Button,
 } from "@material-ui/core";
 import Paper from '@material-ui/core/Paper';
 import axios from "axios";
@@ -35,10 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home(){
   const classes = useStyles();
-  const [checked, setChecked] = useState(false);
-  useEffect(() => {
-    setChecked(true);
-  }, []);
   axios.get("https://mental-health-database.herokuapp.com/users/all-users")//add link to get single user that is logged in
     .then(res =>{
       console.log(res)

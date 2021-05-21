@@ -1,7 +1,5 @@
 // // import "bootstrap/dist/css/bootstrap.min.css";
 // // import { login } from "../services/auth.js";
-import AccountProfile from "./AccountProfile.js"
-import SideDrawer from "./SideDrawer.js"
 import SideDrawer2 from "./SideDrawer2.js"
 // import { useFormFields } from "../lib/customHooks";
 // import { AccountCircle, LockRounded } from "@material-ui/icons";
@@ -9,28 +7,12 @@ import {
   Grid,
   Paper,
   makeStyles,
-  TextField,
   Button,
-  InputAdornment,
   Typography,
   Link,
-  Collapse,
 } from "@material-ui/core";
-import React, {useState, useEffect } from "react";
 import { useFormFields} from "../lib/customHooks";
-import ReactDOM from 'react-dom';
 import axios from 'axios';
-
-const gridStyles = makeStyles({
-  card: {
-    maxWidth: 345,
-    boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
-    backgroundColor: "#fafafa",
-  },
-  media: {
-    height: 300,
-  },
-});
 
 const useStyles = makeStyles((theme) => ({
   searchfield: {
@@ -91,13 +73,7 @@ const useStyles = makeStyles((theme) => ({
 
 //Dummy User: username:JohnSkelington password:JSkel123
 export default function SignIn() {
-  const gridclass=gridStyles()
   const classes = useStyles();
-  const [input, setInput] = useState("");
-  const [checked, setChecked] = useState(false);
-  useEffect(() => {
-    setChecked(true);
-  }, []);
   const[user, setUser]=useFormFields({
     username:'',
     password:'',
@@ -173,9 +149,13 @@ if(userName&&passWord){//add link to find user with username and password
             Sign In
           </Button>
           </div>
-          <Typography variant="subtitle2" className={classes.signUp}>
-                  Don't have an account? <Link href="/register">Sign Up</Link>
-                </Typography>
+          <Typography 
+          variant="subtitle2" 
+          className={classes.signUp}
+          >
+          Don't have an account? 
+          <a href="/register">Sign Up</a>
+          </Typography>
         </form>
         </Paper>
         </Grid>

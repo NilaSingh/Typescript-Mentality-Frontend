@@ -1,13 +1,11 @@
 import React from "react";
 import Home from "./components/Home.js"
 import SignIn from "./components/SignIn.js"
-import SideDrawer from "./components/SideDrawer.js"
-import SideDrawer2 from "./components/SideDrawer2.js"
 import AccountProfile from "./components/AccountProfile.js"
 import Register from "./components/Register.js"
 import Search from "./components/Search.js"
 import Chat from "./components/Chat.js"
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 import Notes from "./components/Notes.js";
 import { AuthContext } from './context/auth-context'
 

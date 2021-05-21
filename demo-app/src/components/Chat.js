@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import "./Home.css"
 import Grid from '@material-ui/core/Grid';
@@ -29,10 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home(){
   const classes = useStyles();
-  const [checked, setChecked] = useState(false);
-  useEffect(() => {
-    setChecked(true);
-  }, []);
  return(
     <div>
     <SideDrawer />

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import "./Home.css"
 import Grid from '@material-ui/core/Grid';
@@ -43,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     borderWidth: "0",
     borderRadius: "20px",
-    left:230,
+    left:'10vw',
     top: 30,
     marginBottom: 50,
   },
@@ -56,10 +55,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Notes(){
   const classes = useStyles();
-  const [checked, setChecked] = useState(false);
-  useEffect(() => {
-    setChecked(true);
-  }, []);
   const [note, setNote] = useFormFields({
       content:""
   })

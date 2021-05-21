@@ -3,19 +3,14 @@ import clsx from 'clsx';
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import PostAddRoundedIcon from '@material-ui/icons/PostAddRounded';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
-import SideDrawer2 from "./SideDrawer2.js"
-import { useHistory } from "react-router-dom";
 
 import {
-  Button,
   List,
   ListItemText,
   ListItem,
@@ -27,11 +22,7 @@ import {
   CssBaseline,
   AppBar,
   Toolbar,
-  Container,
-  TextField,
-  Grid,
 } from "@material-ui/core";
-import { render } from "react-dom";
 const drawerWidth = 240;
 
 const TypographyStyle = withStyles({
@@ -97,11 +88,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function logout(e){
-  let isSignedIn = window.localStorage.getItem("token") in [null, ""];
-  isSignedIn=false
-  console.log(isSignedIn)
-};
+// function logout(e){
+//   let isSignedIn = window.localStorage.getItem("token") in [null, ""];
+//   isSignedIn=false
+//   console.log(isSignedIn)
+// };
 
 export default function SideDrawer() {
   const classes = useStyles();

@@ -3,7 +3,7 @@ import React from "react";
 // import axios from 'axios';
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import { register } from "../services/auth";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Link} from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useFormFields } from "../lib/customHooks";
 import {
@@ -16,11 +16,9 @@ import {
   Collapse,
   Container,
 } from "@material-ui/core";
-import SideDrawer from "./SideDrawer.js"
 import SideDrawer2 from "./SideDrawer2.js"
 import { AuthContext } from '../context/auth-context'
 
-import { useHistory } from "react-router";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -67,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Register({ setLoggedIn, loggedIn }) {
   const { _setToken, _setUser } = React.useContext(AuthContext)
   const history = useHistory();
-
   const classes = useStyles();
   const [checked, setChecked] = useState(false);
   const [user, setUser] = useFormFields({
@@ -263,21 +260,23 @@ export default function Register({ setLoggedIn, loggedIn }) {
                   />
                 </Grid>
               </Grid>
-              <Button
-                className={classes.signUp}
-                type="submit"
-                variant="contained"
-                component={Link} to='/sign-in'
-                onClick={handleSubmit}
-              >
-                Sign up
-              </Button>
+
+            <Button
+            type="submit"
+            className={classes.signUp}
+            variant="contained"
+            size="small"
+            component = {Link} to = "/sign-in"
+            onClick={handleSubmit}
+          >
+            Sign In
+          </Button>
               <Typography 
               justify="center"
               alignItems="center"
               alignContent="center"
               variant="subtitle2">
-                <Link href="/sign-in">Have an account? Sign In</Link>
+              <a href="/sign-in">Have an account? Sign In</a>
               </Typography>
             </form>
           </Paper>

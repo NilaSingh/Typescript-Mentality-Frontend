@@ -3,16 +3,12 @@ import clsx from 'clsx';
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
-import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
-import EventNoteIcon from '@material-ui/icons/EventNote';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import PostAddRoundedIcon from '@material-ui/icons/PostAddRounded';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Link} from "react-router-dom";
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
 import {
-  Button,
   List,
   ListItemText,
   ListItem,
@@ -24,9 +20,6 @@ import {
   CssBaseline,
   AppBar,
   Toolbar,
-  Container,
-  TextField,
-  Grid,
 } from "@material-ui/core";
 const drawerWidth = 240;
 
