@@ -115,7 +115,7 @@ passWord=passWord.replace(/['"]+/g, '')
 console.log(passWord)
 
 if(userName&&passWord){//add link to find user with username and password
-  axios.get(' ')
+  axios.get('https://localhost:3030/users/sign-in')
     .then(function(res){
       console.log(res)
       //redirect to home page
@@ -160,6 +160,7 @@ if(userName&&passWord){//add link to find user with username and password
             placeholder="Password"
             onChange={setUser}
             className={classes.searchfield}
+            type="password"
           />
           <div className={classes.buttonPadding}>
           <Button

@@ -3,7 +3,7 @@ import React from "react";
 // import axios from 'axios';
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import { register } from "../services/auth";
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useFormFields } from "../lib/customHooks";
 import {
@@ -18,6 +18,7 @@ import {
 } from "@material-ui/core";
 import SideDrawer from "./SideDrawer.js"
 import SideDrawer2 from "./SideDrawer2.js"
+import { AuthContext } from '../context/auth-context'
 
 import { useHistory } from "react-router";
 import axios from "axios";
@@ -64,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Register({ setLoggedIn, loggedIn }) {
+  const { _setToken, _setUser } = React.useContext(AuthContext)
   const history = useHistory();
 
   const classes = useStyles();
@@ -84,43 +86,52 @@ export default function Register({ setLoggedIn, loggedIn }) {
 //     history.push("/profile/home");
 //     setLoggedIn(true);
 //   };
-  const handleClick = (e) => {
-  let firstName=JSON.stringify(user.first_name)
-  firstName=firstName.replace(/['"]+/g, '')
-  console.log(firstName)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(user)
+  let firstName=user.first_name
+  // let firstName=JSON.stringify(user.first_name)
+  // firstName=firstName.replace(/['"]+/g, '')
+  // console.log(firstName)
 
-  let lastName=JSON.stringify(user.last_name)
-  lastName=lastName.replace(/['"]+/g, '')
-  console.log(lastName)
+  let lastName=user.last_name
+  // let lastName=JSON.stringify(user.last_name)
+  // lastName=lastName.replace(/['"]+/g, '')
+  // console.log(lastName)
 
-  let userName=JSON.stringify(user.user_name)
-  userName=userName.replace(/['"]+/g, '')
-  console.log(userName)
+  let userName=user.user_name
+  // let userName=JSON.stringify(user.user_name)
+  // userName=userName.replace(/['"]+/g, '')
+  // console.log(userName)
 
-  let passWord=JSON.stringify(user.password)
-  passWord=passWord.replace(/['"]+/g, '')
-  console.log(passWord)
+  let passWord=user.password
+  // let passWord=JSON.stringify(user.password)
+  // passWord=passWord.replace(/['"]+/g, '')
+  // console.log(passWord)
 
-  let eMail=JSON.stringify(user.email)
-  eMail=eMail.replace(/['"]+/g, '')
-  console.log(eMail)
+  let eMail=user.email
+  // let eMail=JSON.stringify(user.email)
+  // eMail=eMail.replace(/['"]+/g, '')
+  // console.log(eMail)
  
-  let medicalIssue=JSON.stringify(user.medical_issue)
-  medicalIssue=medicalIssue.replace(/['"]+/g, '')
-  console.log(medicalIssue)
+  let medicalIssue=user.medical_issue
+  // let medicalIssue=JSON.stringify(user.medical_issue)
+  // medicalIssue=medicalIssue.replace(/['"]+/g, '')
+  // console.log(medicalIssue)
 
-  let accountType=JSON.stringify(user.account_type)
-  accountType=accountType.replace(/['"]+/g, '')
-  console.log(accountType)
+  let accountType=user.account_type
+  // let accountType=JSON.stringify(user.account_type)
+  // accountType=accountType.replace(/['"]+/g, '')
+  // console.log(accountType)
   
-  axios.post('https://mental-health-database.herokuapp.com/users/all-users',{ //here add link from route to register a user
+  axios.post('http://localhost:3030/users/register',{ //here add link from route to register a user
     first_name:firstName,
     last_name:lastName,
     user_name:userName,
     email:eMail,
     password:passWord,
     medical_issue:medicalIssue,
-    account_type:accountType,
+    account_type:accountType
   })
   .then(function(res){
     console.log(res)
@@ -128,6 +139,23 @@ export default function Register({ setLoggedIn, loggedIn }) {
   .catch(function(err){
     console.log(err)
   })
+
+  try {
+  // const { data } = await axios.post('http://localhost:3030/users/register', {
+  //   first_name: "erwins",
+  //   last_name: "saget",
+  //   user_name: "erwezy",
+  //   email: "erwins1223@gmail.com",
+  //   password: "password",
+  //   medical_issue: "neurosis",
+  //   account_type: "patient"
+  //   })
+
+    _setToken('aklsdjflaksjflasf')
+    _setUser({ id: 1, first_name: "erwins"})    
+  } catch (err) {
+    console.log('err', err.message)
+  }
 }
   
 
@@ -157,7 +185,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
                 alt=""
               />
             </Grid>
-            <form autoComplete="off">  {/*onSubmit={handleRegister}> */}
+            <form autoComplete="off" onSubmit={handleSubmit}>
             <p className={classes.justify}><input 
                 type="radio" 
                 value="Specialist" 
@@ -240,7 +268,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
                 type="submit"
                 variant="contained"
                 component={Link} to='/sign-in'
-                onClick={handleClick}
+                onClick={handleSubmit}
               >
                 Sign up
               </Button>

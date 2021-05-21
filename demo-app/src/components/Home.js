@@ -37,7 +37,7 @@ export default function Home(){
     setChecked(true);
   }, []);
   let isSignedIn = window.localStorage.getItem("token") in [null, ""]; //? false : true;
-  if (isSignedIn===false) { //set to true
+  if (isSignedIn===true) { //set to true
  return(
   <div className="page-container" style={{ backgroundImage: "url(/assets/background.jpg)" }}>
       <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
