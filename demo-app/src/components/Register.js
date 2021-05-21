@@ -75,6 +75,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
     medical_issue: "",
     account_type: "",
   });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user)
@@ -120,7 +121,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
   //   })
 
     _setToken('aklsdjflaksjflasf')
-    _setUser({ id: 1, first_name: "erwins"})    
+    _setUser({ id: 1, first_name: "erwins",last_name:'saget', user_name:'erweezy'})    
   } catch (err) {
     console.log('err', err.message)
   }

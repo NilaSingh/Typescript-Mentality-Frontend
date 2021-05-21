@@ -9,6 +9,7 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
+import { AuthContext } from '../context/auth-context'
 
 import {
   List,
@@ -98,7 +99,8 @@ export default function SideDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  
+  const { user, token } = React.useContext(AuthContext)
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -107,6 +109,13 @@ export default function SideDrawer() {
     setOpen(false);
   };
 
+  const logOut = () => {
+    // _setToken(null)
+    // _setUser({ id: null, first_name: ''})
+    console.log(user)
+
+
+  }
 return(
   <div className={classes.root}>
     <CssBaseline />
@@ -174,7 +183,7 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))}
-        {['My Notes'].map((text, index) => (
+        {/* {['My Notes'].map((text, index) => (
           <ListItem 
           button key={text}
           component={Link} to='/my-notes'
@@ -182,7 +191,7 @@ return(
             <ListItemIcon><EventNoteIcon style={{color:'#375C23'}}/></ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
-        ))}
+        ))} */}
        {/* {['Saved'].map((text, index) => (
           <ListItem 
           button key={text}
@@ -215,8 +224,8 @@ return(
       {['Log Out'].map((text, index) => (
           <ListItem 
           button key={text}
+          onClick={logOut}
           //component={Link} to='/sign-in'
-          component={Link} to='/sign-in'
           >
             <ListItemIcon><ExitToAppRoundedIcon style={{color:'#375C23'}}/></ListItemIcon>
             <ListItemText primary={text} />

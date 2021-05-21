@@ -10,15 +10,14 @@ import Notes from "./components/Notes.js";
 import { AuthContext } from './context/auth-context'
 import SideDrawer from './components/SideDrawer.js'
 import SideDrawer2 from './components/SideDrawer2.js'
-
 function AuthenticatedApp() {
   return (
     <Router>
       <SideDrawer></SideDrawer>
       <Switch>
-        <Route path='/my-notes'>
+        {/* <Route path='/my-notes'>
           <Notes />
-        </Route>
+        </Route> */}
         <Route path ="/search">
           <Search />
         </Route>
@@ -28,10 +27,8 @@ function AuthenticatedApp() {
         <Route path="/chat">
           <Chat />
         </Route>
-        <Route path="*">
-          <div>
-            not found
-          </div>
+        <Route path="/">
+          <Home />
         </Route>
       </Switch>
     </Router>
