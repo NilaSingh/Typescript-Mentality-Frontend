@@ -9,7 +9,7 @@ import {
 import axios from 'axios';
 import "./Search.css"
 import SideDrawer from "./SideDrawer.js"
-
+import { AuthProvider } from "../context/auth-context"
 const useStyles = makeStyles((theme) => ({
   searchfield: {
     "&:hover": {
@@ -86,92 +86,63 @@ export default function Search() {
 
 const handleSubmit = e =>{
 e.preventDefault()
-let accountType=JSON.stringify(user.account_type)
-accountType=accountType.replace(/['"]+/g, '')
-console.log(accountType)
-
+let accountType=JSON.stringify(user.account_type) //let account type = to account type of user logged in from auth content
 let medicalIssue=JSON.stringify(user.medical_issue)
-medicalIssue=medicalIssue.replace(/['"]+/g, '')
-console.log(medicalIssue)
-
 let userName=JSON.stringify(user.username)
-userName=userName.replace(/['"]+/g, '')
-console.log(userName)
-//add filtering specs here
-
-if(accountType&&medicalIssue&&userName){
-  axios.get(`https://mental-health-database.herokuapp.com/`)//`http://localhost:3000/users/`)   //axios function to get all filtered
-  .then(res =>{
-    const users=res.data
-    const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-    ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
-  else if(accountType&&medicalIssue&&!userName){
-    if(accountType === 'User'){
-      axios.get(`http://localhost:3030/users/patients/${medicalIssue}`)   //filter account type and username
+//filtering specs
+if(accountType==="User"){
+  if(medicalIssue&&!userName){
+    axios.get(``)  //get specialist by medical issue and username
       .then(res =>{
         const users=res.data
         const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-        console.log(usersList)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})
-    }else if(accountType === 'Specialist'){
-      axios.get(`http://localhost:3030/users/special/${medicalIssue}`)
-      .then(res =>{
-        const users=res.data
-        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-        console.log(usersList)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}}
-    else if(accountType&&userName&&!medicalIssue){
-      axios.get(`https://mental-health-database.herokuapp.com/users/`) //filter account type and medical issue
-      .then(res =>{
-        const users=res.data
-        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-        console.log(usersList)
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
-      else if(medicalIssue&&userName&&!accountType){
-        axios.get(`https://localhost:3030/users/`) //filter medical issue and username
-        .then(res =>{
-          const users=res.data
-          const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-          console.log(usersList)
-          ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
-        else if(accountType&&!userName&&!medicalIssue){
-          if(accountType === 'Specialist'){
-            axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/specialist`) //filter accounttype: specialist
-            .then(res =>{
-              const users=res.data
-              const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-              console.log(usersList)
-              ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})
-          }else if(accountType === "User"){
-            axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/patient`) //filter accounttype: patient
-            .then(res =>{
-              const users=res.data
-              const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-              console.log(usersList)
-              ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}}
-          else if(medicalIssue&&!accountType&&!userName){
-            axios.get(`https://mental-health-database.herokuapp.com/users/specialty-users/${medicalIssue}`) //filter medical issue, have to pres twice
-            .then(res =>{
-              const users=res.data
-              const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-              console.log(usersList)
-              ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
-            else if(userName&&!medicalIssue&&!accountType){
-              axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`) //filter username
-              .then(res =>{
-                const users=res.data
-                const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
-                console.log(usersList)
-                ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
-              else{
-                axios.get(`http://localhost:3030/users/all-users`)   //show all if no filter selected
-                .then(res =>{
-                  const users=res.data
-                  const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b><p>{user.password}</p></Card><br/></Grid>)
-                  console.log(usersList)
-                  ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})
-              }
-            }
+  if(!medicalIssue&&userName){
+    axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get specialist by username fix to only specialists
+      .then(res =>{
+        const users=res.data
+        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+  if(medicalIssue&&userName){
+    axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/Depression`)  //get specialist by medical issue
+      .then(res =>{
+        const users=res.data
+        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+  if(!medicalIssue&&!userName){
+    axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/specialist`)  //get all specialist 
+      .then(res =>{
+        const users=res.data
+        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}   
+}
+else if(accountType==="Specialists"){
+  if(medicalIssue&&!userName){
+    axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/${medicalIssue}`)  //get patients by medical issue
+      .then(res =>{
+        const users=res.data
+        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+  if(!medicalIssue&&userName){
+    axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get patients by medical issue
+      .then(res =>{
+        const users=res.data
+        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+  if(medicalIssue&&userName){
+    axios.get(``)  //get patients by medical issue and username
+      .then(res =>{
+        const users=res.data
+        const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+  if(!medicalIssue&&!userName){
+    axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/patient`)  //get all patients
+    .then(res =>{
+      const users=res.data
+      const usersList=users.map((user)=><Grid><Card><b>{user.user_name}</b></Card></Grid>)
+      ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+          }
+        }
     return (
       <body>
         <SideDrawer />
@@ -201,11 +172,6 @@ if(accountType&&medicalIssue&&userName){
         <div className='filter-container'>
         <div>
           <h2 className={classes.textcolor}>Filter By :</h2>
-        </div>
-        <div>
-          <h3 className={classes.textcolor}>Account:</h3>
-          <input  type="radio" value='User' onClick={setUser} name='account_type' /><t className={classes.textcolor}>User</t><br/>
-          <input type="radio" value='Specialist' onClick={setUser} name='account_type' /><t className={classes.textcolor}>Specialist</t><br/><br/>
         </div>
           <div>
             <h3 className={classes.textcolor}>Medical Issue:</h3>

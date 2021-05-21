@@ -64,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Register({ setLoggedIn, loggedIn }) {
   const { _setToken, _setUser } = React.useContext(AuthContext)
-  const history = useHistory();
   const classes = useStyles();
   const [checked, setChecked] = useState(false);
   const [user, setUser] = useFormFields({
@@ -87,39 +86,18 @@ export default function Register({ setLoggedIn, loggedIn }) {
     e.preventDefault();
     console.log(user)
   let firstName=user.first_name
-  // let firstName=JSON.stringify(user.first_name)
-  // firstName=firstName.replace(/['"]+/g, '')
-  // console.log(firstName)
 
   let lastName=user.last_name
-  // let lastName=JSON.stringify(user.last_name)
-  // lastName=lastName.replace(/['"]+/g, '')
-  // console.log(lastName)
 
   let userName=user.user_name
-  // let userName=JSON.stringify(user.user_name)
-  // userName=userName.replace(/['"]+/g, '')
-  // console.log(userName)
 
   let passWord=user.password
-  // let passWord=JSON.stringify(user.password)
-  // passWord=passWord.replace(/['"]+/g, '')
-  // console.log(passWord)
 
   let eMail=user.email
-  // let eMail=JSON.stringify(user.email)
-  // eMail=eMail.replace(/['"]+/g, '')
-  // console.log(eMail)
  
   let medicalIssue=user.medical_issue
-  // let medicalIssue=JSON.stringify(user.medical_issue)
-  // medicalIssue=medicalIssue.replace(/['"]+/g, '')
-  // console.log(medicalIssue)
 
   let accountType=user.account_type
-  // let accountType=JSON.stringify(user.account_type)
-  // accountType=accountType.replace(/['"]+/g, '')
-  // console.log(accountType)
   
   axios.post('http://localhost:3030/users/register',{ //here add link from route to register a user
     first_name:firstName,
