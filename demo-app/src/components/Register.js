@@ -75,13 +75,6 @@ export default function Register({ setLoggedIn, loggedIn }) {
     medical_issue: "",
     account_type: "",
   });
-
-//   const handleRegister = (event) => {
-//     event.preventDefault();
-//     register(business);
-//     history.push("/profile/home");
-//     setLoggedIn(true);
-//   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user)
